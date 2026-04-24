@@ -1,19 +1,296 @@
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow');
-            } else {
-                navbar.classList.remove('shadow');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #05070c;
+            color: #edf2ff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .navbar-brand, .btn, .section-title {
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Deep cosmic background with subtle grain */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 25% 15%, #0e0a24, #02010a);
+        }
+        .gradient-bg::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 75% 65%, rgba(100, 70, 210, 0.25), transparent 75%);
+        }
+
+        /* floating orbs (soft & aesthetic) */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: floatDrift 24s infinite alternate ease-in-out;
+        }
+        .orb1 { width: 500px; height: 500px; background: #a855f7; top: -15%; left: -15%; }
+        .orb2 { width: 600px; height: 600px; background: #ec4899; bottom: -20%; right: -15%; animation-duration: 30s; opacity: 0.2; }
+        .orb3 { width: 350px; height: 350px; background: #14b8a6; top: 45%; left: 80%; animation-duration: 20s; opacity: 0.18;}
+
+        @keyframes floatDrift {
+            0% { transform: translate(0, 0) scale(1);}
+            100% { transform: translate(45px, -70px) scale(1.12);}
+        }
+
+        /* Glassmorphism refined */
+        .navbar {
+            backdrop-filter: blur(20px);
+            background: rgba(5, 7, 18, 0.75);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.4);
+            transition: all 0.3s;
+            padding: 0.7rem 0;
+        }
+        .navbar-brand {
+            font-size: 1.7rem;
+            background: linear-gradient(125deg, #ffffff, #c084fc, #ff9eb5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+            font-weight: 700;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: #eef3ff !important;
+            margin: 0 12px;
+            transition: 0.25s;
+            font-size: 0.9rem;
+        }
+        .nav-link:hover {
+            color: #c4b5fd !important;
+            transform: translateY(-2px);
+        }
+
+        /* hero */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 7rem 0 5rem;
+        }
+        .badge-neon {
+            background: rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid #c084fc;
+            color: #f0e6ff;
+            border-radius: 100px;
+            padding: 6px 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        /* enhanced profile ring */
+        .profile-img-wrapper {
+            position: relative;
+            width: 340px;
+            height: 340px;
+            margin: 0 auto;
+        }
+        .profile-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: linear-gradient(125deg, #c084fc, #ff2d75, #3b82f6, #c084fc);
+            background-size: 300% 300%;
+            animation: rotateGradient 7s ease infinite;
+            filter: blur(18px);
+            opacity: 0.6;
+            z-index: 0;
+        }
+        @keyframes rotateGradient {
+            0% { background-position: 0% 50%; transform: rotate(0deg); }
+            50% { background-position: 100% 50%; transform: rotate(3deg); }
+            100% { background-position: 0% 50%; transform: rotate(0deg); }
+        }
+        .profile-img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.2);
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.5), 0 0 0 5px rgba(139, 92, 246, 0.5);
+            transition: transform 0.4s ease;
+            background: linear-gradient(145deg, #25254a, #13132e);
+            z-index: 2;
+        }
+        .profile-img:hover {
+            transform: scale(1.02);
+        }
+        @media (max-width: 768px) {
+            .profile-img-wrapper { width: 260px; height: 260px; }
+        }
+
+        /* glass card modern */
+        .glass-card-modern {
+            background: rgba(18, 22, 45, 0.65);
+            backdrop-filter: blur(16px);
+            border-radius: 2rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            height: 100%;
+            padding: 2rem 1.5rem;
+        }
+        .glass-card-modern:hover {
+            transform: translateY(-6px);
+            border-color: #ff77a9;
+            box-shadow: 0 25px 40px -12px rgba(139, 92, 246, 0.4);
+        }
+        .skill-badge {
+            background: rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid #3b82f6;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin: 5px 6px 0 0;
+            display: inline-block;
+        }
+        .btn-primary-soft {
+            background: linear-gradient(105deg, #7c3aed, #db2777);
+            border: none;
+            border-radius: 60px;
+            padding: 10px 28px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: white;
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
+        }
+        .btn-primary-soft:hover {
+            transform: scale(1.02);
+            background: linear-gradient(105deg, #8b5cf6, #f43f5e);
+            color: white;
+        }
+        .btn-outline-soft {
+            border-radius: 60px;
+            border: 1.5px solid rgba(255,255,255,0.5);
+            padding: 9px 26px;
+            font-weight: 500;
+            transition: 0.25s;
+            background: transparent;
+            color: white;
+        }
+        .btn-outline-soft:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: #c084fc;
+            color: white;
+        }
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, #ffffff, #e0b0ff, #ffb3cf);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .section-sub {
+            color: #b9c3f0;
+            max-width: 600px;
+            margin: 0.5rem auto 2rem auto;
+            font-size: 1.05rem;
+        }
+        .about-card-icon {
+            background: rgba(192, 132, 252, 0.2);
+            border-radius: 30px;
+            padding: 12px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .certificate-badge {
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+            height: 100%;
+        }
+        .certificate-badge:hover {
+            border-color: #a78bfa;
+            background: rgba(139, 92, 246, 0.2);
+        }
+        .contact-section {
+            background: radial-gradient(circle at 30% 20%, #0c0f22, #010015);
+            border-top: 1px solid rgba(139, 92, 246, 0.4);
+        }
+        .footer {
+            background: #03010c;
+            border-top: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 1.8rem 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
+            .hero-section { text-align: center; padding: 5rem 0 3rem; }
+            .section-title { font-size: 2.2rem; }
+            .glass-card-modern { padding: 1.5rem; }
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0e0e1a; }
+        ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 10px; }
+        .text-gradient-accent {
+            background: linear-gradient(130deg, #ffb3d1, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        hr.glow {
+            opacity: 0.3;
+            background: linear-gradient(90deg, transparent, #c084fc, #ff6b9d, transparent);
+            height: 1px;
+        }
+        .list-info li {
+            margin-bottom: 10px;
+        }
+        .project-card, .creative-card, .design-card {
+            background: rgba(18, 22, 45, 0.65);
+            backdrop-filter: blur(16px);
+            border-radius: 2rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            height: 100%;
+            padding: 1.8rem;
+        }
+        .project-card:hover, .creative-card:hover, .design-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff90b5;
+        }
+        /* New utility: section spacing fix */
+        .section-padding {
+            padding: 90px 0;
+        }
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
             }
-        });
+        }
+        /* additional breathing for sections */
+        .spacer-divider {
+            margin: 0;
+        }
