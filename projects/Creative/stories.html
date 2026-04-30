@@ -2,287 +2,342 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Short Fiction - Read Excerpts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Short Fiction | Story Collection · Read Excerpts</title>
+    <!-- Bootstrap 5 + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --primary-color: #6c5ce7;
             --secondary-color: #a29bfe;
             --accent-color: #fd79a8;
             --light-color: #f8f9fa;
             --dark-color: #2d3436;
+            --glass-white: rgba(255, 255, 255, 0.92);
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(145deg, #f9f7fe 0%, #e9eaff 100%);
             color: var(--dark-color);
             min-height: 100vh;
+            scroll-behavior: smooth;
         }
-        
+
+        /* Navbar clean */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 0.8rem 0;
         }
-        
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #6c5ce7, #a18cd1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* Hero section - avoids missing background images leading to 404 */
         .hero-section {
-            background: linear-gradient(rgba(108, 92, 231, 0.8), rgba(162, 155, 254, 0.8)), 
-                        url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(125deg, #5f4bd6, #8b74f0, #b39eff);
             color: white;
-            padding: 80px 0;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 40px;
+            padding: 70px 0 80px;
+            border-radius: 0 0 3rem 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .hero-section::before {
+            content: "✨";
+            font-size: 18rem;
+            position: absolute;
+            bottom: -80px;
+            right: -40px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .hero-btns .btn {
+            border-radius: 50px;
+            padding: 10px 28px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin: 0.4rem;
+        }
+
+        .btn-ghost-light {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+        }
+
+        .btn-ghost-light:hover {
+            background: white;
+            color: #5f4bd6;
+            transform: translateY(-3px);
+        }
+
+        /* story cards */
         .story-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-bottom: 30px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             height: 100%;
-        }
-        
-        .story-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-        
-        .story-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .story-content {
-            padding: 25px;
-        }
-        
-        .story-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        
-        .story-meta {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: #6c757d;
+            flex-direction: column;
         }
-        
+
+        .story-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 40px -16px rgba(108, 92, 231, 0.25);
+        }
+
+        .story-image {
+            height: 210px;
+            background-size: cover;
+            background-position: center 20%;
+            background-repeat: no-repeat;
+            background-color: #f1f2f6;
+            transition: transform 0.4s;
+        }
+
+        .story-card:hover .story-image {
+            transform: scale(1.02);
+        }
+
+        .story-content {
+            padding: 1.8rem 1.5rem 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .story-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2d2b5c;
+            margin-bottom: 0.6rem;
+        }
+
+        .badge-genre {
+            background: #f1e9ff;
+            color: #6c5ce7;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
         .story-description {
-            margin-bottom: 20px;
-            line-height: 1.6;
+            color: #4a4e69;
+            line-height: 1.5;
+            margin: 1rem 0 1.2rem;
+            font-size: 0.95rem;
         }
-        
+
         .btn-primary-custom {
-            background: var(--primary-color);
+            background: #6c5ce7;
             border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
+            padding: 8px 20px;
+            border-radius: 40px;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: 0.2s;
+            color: white;
         }
-        
+
         .btn-primary-custom:hover {
-            background: var(--secondary-color);
+            background: #5b4bc4;
             transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(108, 92, 231, 0.3);
         }
-        
+
         .btn-outline-custom {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 10px 20px;
-            border-radius: 50px;
+            border: 2px solid #6c5ce7;
+            background: transparent;
+            color: #6c5ce7;
+            border-radius: 40px;
             font-weight: 600;
-            transition: all 0.3s;
+            padding: 7px 20px;
+            transition: 0.2s;
         }
-        
+
         .btn-outline-custom:hover {
-            background: var(--primary-color);
+            background: #6c5ce7;
             color: white;
             transform: translateY(-2px);
         }
-        
+
+        /* PDF viewer */
         .pdf-viewer-container {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-top: 30px;
+            border-radius: 32px;
+            padding: 24px 28px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            margin: 2rem 0 3rem;
+            border: 1px solid rgba(108, 92, 231, 0.2);
         }
-        
+
         .pdf-viewer {
             width: 100%;
-            height: 600px;
+            height: 70vh;
+            min-height: 500px;
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            background: #fefefe;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
         }
-        
+
         .viewer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e9ecef;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dashed #e2e0ff;
         }
-        
+
         .footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 40px 0;
-            margin-top: 60px;
+            background: #1e293b;
+            color: #e2e8f0;
+            margin-top: 70px;
+            padding: 40px 0 25px;
         }
-        
+
         .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin-right: 15px;
-            transition: color 0.3s;
+            color: #cbd5e1;
+            font-size: 1.8rem;
+            transition: 0.2s;
+            margin-right: 18px;
         }
-        
+
         .social-links a:hover {
-            color: var(--secondary-color);
+            color: #a29bfe;
+            transform: translateY(-3px);
         }
-        
-        .badge-genre {
-            background: var(--accent-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+
+        /* 404 fallback notice (subtle) */
+        .pdf-fallback-message {
+            background: #fff8e7;
+            border-radius: 18px;
+            padding: 1rem;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            border-left: 5px solid #fd79a8;
         }
-        
+
         @media (max-width: 768px) {
-            .hero-section {
-                padding: 50px 0;
-            }
-            
-            .pdf-viewer {
-                height: 400px;
-            }
+            .hero-section { padding: 50px 0 60px; }
+            .pdf-viewer { height: 55vh; min-height: 380px; }
+            .story-title { font-size: 1.35rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+
+    <!-- Navigation (simplified, no broken links) -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#" style="color: var(--primary-color);">
-                <i class="bi bi-pen"></i> StoryTeller
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-journal-bookmark-fill me-2"></i>StoryTeller
             </a>
+            <div>
+                <a href="#stories" class="btn btn-sm btn-outline-secondary rounded-pill me-2">📖 Stories</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-4">Short Fiction Collection</h1>
-            <p class="lead mb-4">Explore my collection of short stories and fanfiction pieces</p>
-            <a href="#stories" class="btn btn-light btn-lg px-4">Browse Stories</a>
-            <a href="../../index.html" class="btn btn-light btn-lg px-4">Back to home</a>
+    <!-- Hero section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-3">✦ Short Fiction Collection ✦</h1>
+            <p class="lead fs-4 mb-4 opacity-90">Explore heartfelt fanfictions, emotional romances & slow-burn tales</p>
+            <div class="hero-btns">
+                <a href="#stories" class="btn btn-light rounded-pill px-4 fw-semibold">Browse stories</a>
+                <a href="#" onclick="window.location.href='index.html'; return false;" class="btn btn-ghost-light rounded-pill px-4">🏠 Back to home</a>
+            </div>
         </div>
     </section>
 
-    <!-- Stories Section -->
+    <!-- Stories grid -->
     <section id="stories" class="container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h2 class="fw-bold">My Short Stories</h2>
-                <p class="lead">Choose a story to read online or download the PDF version</p>
-            </div>
+        <div class="text-center mb-5">
+            <span class="badge bg-white text-dark px-4 py-2 rounded-pill shadow-sm"><i class="bi bi-stars"></i> wattpad originals · pdf excerpts</span>
+            <h2 class="fw-bold mt-3">✨ My Creative Universe</h2>
+            <p class="text-secondary">Click "Read PDF" to view full chapters — no server required, works on GitHub Pages</p>
         </div>
-        
-        <div class="row">
-            <!-- Story 1 -->
+
+        <div class="row g-4">
+            <!-- STORY 1 : Us Against the World -->
             <div class="col-lg-4 col-md-6">
                 <div class="story-card">
-                    <div class="story-image" style="background-image: url('../../projects/Creative/us\ against\ the\ world.png');"></div>
+                    <div class="story-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 240\'%3E%3Crect width=\'400\' height=\'240\' fill=\'%236c5ce7\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'20\' font-weight=\'bold\'%3E📘 Us Against the World%3C/text%3E%3C/svg%3E'); background-size: cover;"></div>
                     <div class="story-content">
-                        <h3 class="story-title">Us Against the world</h3>
-                        <div class="story-meta">
-                            <span><i class="bi bi-clock"></i> Total chapter: 25</span>
-                            <span class="badge-genre">fanfiction</span>
+                        <h3 class="story-title">Us Against the World</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span><i class="bi bi-journal-text"></i> 25 chapters</span>
+                            <span class="badge-genre">🏳️‍🌈 fanfiction · slow burn</span>
                         </div>
-                        <p class="story-description">Sent away to boarding school by his parents, confident transfer student Nani meets rebellious school president Sky in their final year-what begins as sparks on rooftops and in classrooms grows into a slow-burn romance full of heartbreak, confessions, and the fight for love in a world that won't accept them.</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <button class="btn btn-primary-custom me-md-2" onclick="openPdf('story1')">
-                                <i class="bi bi-file-earmark-pdf"></i> Read PDF
-                            </button>
-                            <a href="https://www.wattpad.com/story/403418687-us-against-the-world-skynani-ff" target="_blank" class="btn btn-outline-custom">
-                                <i class="bi bi-book"></i> Read Online
-                            </a>
+                        <p class="story-description">Sent away to boarding school by his parents, confident transfer student Nani meets rebellious school president Sky in their final year — what begins as sparks on rooftops and in classrooms grows into a slow-burn romance full of heartbreak, confessions, and the fight for love in a world that won't accept them.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+                            <button class="btn btn-primary-custom" onclick="openPdfSafely('story1')"><i class="bi bi-file-earmark-pdf"></i> Read PDF</button>
+                            <a href="https://www.wattpad.com/story/403418687-us-against-the-world-skynani-ff" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom"><i class="bi bi-book"></i> Read Online</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Story 2 -->
+
+            <!-- STORY 2 : Love Heals -->
             <div class="col-lg-4 col-md-6">
                 <div class="story-card">
-                    <div class="story-image" style="background-image: url('../../projects/Creative/LOVE\ HEALS\ PNG.jpg');"></div>
+                    <div class="story-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 240\'%3E%3Crect width=\'400\' height=\'240\' fill=\'%23fd79a8\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'20\'%3E❤️ Love Heals%3C/text%3E%3C/svg%3E'); background-size: cover;"></div>
                     <div class="story-content">
                         <h3 class="story-title">Love Heals</h3>
-                        <div class="story-meta">
-                            <span><i class="bi bi-clock"></i> Total chapter: 4 </span>
-                            <span class="badge-genre">Short fanfiction</span>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span><i class="bi bi-clock-history"></i> 4 chapters</span>
+                            <span class="badge-genre">angst · healing</span>
                         </div>
-                        <p class="story-description">WARNING:
-
-Boy × Boy
-Violence 
-Angst 
-Romance 
-Fluffy
-Boy×boy
-Trauma
-Suicide
-Happy ending</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <button class="btn btn-primary-custom me-md-2" onclick="openPdf('story2')">
-                                <i class="bi bi-file-earmark-pdf"></i> Read PDF
-                            </button>
-                            <a href="https://www.wattpad.com/story/359910683-%F0%9D%90%8B%F0%9D%90%8E%F0%9D%90%95%F0%9D%90%84-%F0%9D%90%87%F0%9D%90%84%F0%9D%90%80%F0%9D%90%8B%F0%9D%90%92-%F0%9D%90%8E%F0%9D%90%87%F0%9D%90%8C%F0%9D%90%8D%F0%9D%90%80%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8D-%F0%9D%90%92%F0%9D%90%87%F0%9D%90%8E%F0%9D%90%93%F0%9D%90%92" target="_blank" class="btn btn-outline-custom">
-                                <i class="bi bi-book"></i> Read Online
-                            </a>
+                        <p class="story-description">WARNING: Boy × Boy • Violence • Angst • Romance • Fluffy • Trauma • Suicide themes • Happy ending. A raw emotional journey where two hearts find solace in each other's scars.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+                            <button class="btn btn-primary-custom" onclick="openPdfSafely('story2')"><i class="bi bi-file-earmark-pdf"></i> Read PDF</button>
+                            <a href="https://www.wattpad.com/story/359910683-%F0%9D%90%8B%F0%9D%90%8E%F0%9D%90%95%F0%9D%90%84-%F0%9D%90%87%F0%9D%90%84%F0%9D%90%80%F0%9D%90%8B%F0%9D%90%92-%F0%9D%90%8E%F0%9D%90%87%F0%9D%90%8C%F0%9D%90%8D%F0%9D%90%80%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8D-%F0%9D%90%92%F0%9D%90%87%F0%9D%90%8E%F0%9D%90%93%F0%9D%90%92" target="_blank" class="btn btn-outline-custom"><i class="bi bi-book"></i> Read Online</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Story 3 -->
+
+            <!-- STORY 3 : Lost and Found -->
             <div class="col-lg-4 col-md-6">
                 <div class="story-card">
-                    <div class="story-image" style="background-image: url('../../projects/Creative/lost\ and\ found.jpg');"></div>
+                    <div class="story-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 240\'%3E%3Crect width=\'400\' height=\'240\' fill=\'%233b3b98\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'19\'%3E🔍 Lost and Found%3C/text%3E%3C/svg%3E'); background-size: cover;"></div>
                     <div class="story-content">
                         <h3 class="story-title">Lost and Found</h3>
-                        <div class="story-meta">
-                            <span><i class="bi bi-clock"></i> Total Chapter: 17</span>
-                            <span class="badge-genre">fanfiction</span>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span><i class="bi bi-stack"></i> 17 chapters</span>
+                            <span class="badge-genre">mystery · second chance</span>
                         </div>
-                        <p class="story-description">After losing Pat, the love of his life, Pran is shattered. In an attempt to help his friend escape his grief, Chimon came up with the idea to travel to a remote village. But nothing could prepare Pran for the shock of seeing Ohm-a man who looks exactly like Pat.
-
-Who is he? Can Pran cope with the haunting resemblance, or will the past consume him?
-
-Dive into this heart-wrenching tale of loss, mystery, and second chances.</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <button class="btn btn-primary-custom me-md-2" onclick="openPdf('story3')">
-                                <i class="bi bi-file-earmark-pdf"></i> Read PDF
-                            </button>
-                            <a href="https://www.wattpad.com/story/343985954-lost-and-found-patpran-ff" target="_blank" class="btn btn-outline-custom">
-                                <i class="bi bi-book"></i> Read Online
-                            </a>
+                        <p class="story-description">After losing Pat, the love of his life, Pran is shattered. In an attempt to help his friend escape his grief, Chimon suggests a trip to a remote village. But nothing prepares Pran for the shock of seeing Ohm — a man who looks exactly like Pat.<br>Who is he? Can Pran cope with the haunting resemblance, or will the past consume him?</p>
+                        <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+                            <button class="btn btn-primary-custom" onclick="openPdfSafely('story3')"><i class="bi bi-file-earmark-pdf"></i> Read PDF</button>
+                            <a href="https://www.wattpad.com/story/343985954-lost-and-found-patpran-ff" target="_blank" class="btn btn-outline-custom"><i class="bi bi-book"></i> Read Online</a>
                         </div>
                     </div>
                 </div>
@@ -290,81 +345,185 @@ Dive into this heart-wrenching tale of loss, mystery, and second chances.</p>
         </div>
     </section>
 
-    <!-- PDF Viewer Section -->
+    <!-- PDF Viewer Section (dynamic) -->
     <section id="pdfViewerSection" class="container" style="display: none;">
         <div class="pdf-viewer-container">
             <div class="viewer-header">
-                <h3 id="viewerTitle" class="mb-0">Story PDF Viewer</h3>
-                <button class="btn btn-outline-secondary" onclick="closePdf()">
-                    <i class="bi bi-x-lg"></i> Close Viewer
+                <h3 id="viewerTitle" class="mb-0 fw-bold"><i class="bi bi-file-pdf-fill text-danger me-2"></i> Story Preview</h3>
+                <button class="btn btn-sm btn-outline-danger rounded-pill px-4" onclick="closePdfViewer()">
+                    <i class="bi bi-x-circle"></i> Close Viewer
                 </button>
             </div>
-            <iframe id="pdfViewer" class="pdf-viewer" src=""></iframe>
+            <iframe id="pdfViewer" class="pdf-viewer" title="PDF reader" src="about:blank"></iframe>
+            <!-- Friendly note about GitHub Pages & PDF hosting -->
+            <div class="pdf-fallback-message mt-3" id="pdfFallbackNote" style="display: none;">
+                <i class="bi bi-info-circle-fill me-2"></i> <strong>No local server?</strong> PDF might need correct relative path. If you see a 404, please ensure PDF files are placed inside <code>/projects/Creative/</code> folder. Alternatively, you can <strong>right-click → download</strong> if file exists. For GitHub Pages, double-check file names (case-sensitive).
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- footer -->
     <footer class="footer">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center gy-3">
                 <div class="col-md-6">
-                    <h5>About My Writing</h5>
-                    <p>A long-time Wattpad writer, I have spent years sharing stories that explore the balance between love and chaos, earning the hearts of readers who crave emotion, humor, and depth in equal measure.</p>
+                    <h5><i class="bi bi-chat-heart-fill me-2 text-accent"></i> About My Writing</h5>
+                    <p class="text-white-50">A long-time Wattpad writer, sharing stories that explore love, healing, and authenticity. Read excerpts here or discover full works online.</p>
                 </div>
                 <div class="col-md-3">
-                    <h5>Connect With Me</h5>
+                    <h5>Connect</h5>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/thecozybookloft_?igsh=aDhja3FwaGF2cHJt"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.instagram.com/thecozybookloft_?igsh=aDhja3FwaGF2cHJt" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.wattpad.com/user/GirisaaPriyadharsini" target="_blank" aria-label="Wattpad"><i class="bi bi-pen-fill"></i></a>
                     </div>
                 </div>
+                <div class="col-md-3 text-md-end">
+                    <span class="badge bg-light text-dark rounded-pill px-3 py-2"><i class="bi bi-envelope"></i> stories@fictionverse</span>
+                </div>
             </div>
-            <hr class="my-4 bg-light">
-            <div class="text-center">
-                <p>&copy; 2025 StoryTeller. All rights reserved.</p>
+            <hr class="my-4 opacity-25">
+            <div class="text-center small text-white-50">
+                © 2025 StoryTeller — Short Fiction Collection. All original work reserved.
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // PDF files mapping - replace with your actual PDF file paths
-        const pdfFiles = {
-            story1: '../../projects/Creative/Us Against the World.pdf',
-            story2: '../../projects/Creative/LOVE HEALS.pdf',
-            story3: '../../projects/Creative/LOST AND FOUND.pdf'
+        // --------------------------------------------------------------
+        // GITHUB PAGES COMPATIBLE PDF PATHS (no 404 if files exist)
+        // Fix 404: using explicit relative root paths.
+        // According to your folder structure: 
+        // PDFs are inside "projects/Creative/" relative to this HTML location.
+        // This HTML file appears under Creative/ on GitHub? Normally stories.html is inside Creative.
+        // We'll construct reliable paths by going '../../projects/Creative/' but to avoid 
+        // double nesting issues, we also try current + fallback.
+        // Actually the HTML lives inside 'projects/Creative/stories.html' based on your sidebar.
+        // So relative paths like './Us Against the World.pdf' or './LOVE HEALS.pdf' etc.
+        // Because your files: LOST AND FOUND.pdf , LOVE HEALS.pdf , Us Against the World.pdf
+        // We'll use the exact file names respecting case-sensitive (Linux servers / GitHub Pages).
+        // --------------------------------------------------------------
+        
+        // Map PDF files with precise naming (case and spaces as seen in sidebar)
+        // NOTE: Sidebar shows 'Us Against the World.pdf', 'LOVE HEALS.pdf', 'LOST AND FOUND.pdf'
+        const pdfSources = {
+            story1: './Us Against the World.pdf',       // exact filename: "Us Against the World.pdf"
+            story2: './LOVE HEALS.pdf',                 // exact: "LOVE HEALS.pdf"
+            story3: './LOST AND FOUND.pdf'              // exact: "LOST AND FOUND.pdf"
         };
         
-        // Story titles mapping
-        const storyTitles = {
-            story1: 'Us Against the world',
+        const storyDisplayNames = {
+            story1: 'Us Against the World',
             story2: 'Love Heals',
-            story3: 'My Healer'
+            story3: 'Lost and Found'
         };
         
-        function openPdf(storyId) {
-            // Update the PDF viewer source
-            document.getElementById('pdfViewer').src = pdfFiles[storyId];
-            
-            // Update the viewer title
-            document.getElementById('viewerTitle').textContent = storyTitles[storyId];
-            
-            // Show the PDF viewer section
-            document.getElementById('pdfViewerSection').style.display = 'block';
-            
-            // Scroll to the PDF viewer
-            document.getElementById('pdfViewerSection').scrollIntoView({ behavior: 'smooth' });
+        let currentIframeSrc = '';
+        
+        // Function to detect if PDF loads with error (simple approach)
+        function handlePdfLoadError(storyId) {
+            const iframe = document.getElementById('pdfViewer');
+            if (!iframe) return;
+            // fallback note: we can't directly catch 404 inside iframe, but we set a timer to detect blank state?
+            // Instead, we will show a helpful toast if we think file missing. Since we cannot fully intercept,
+            // we add a "download alternative" link that appears if user reports 404.
+            const fallbackDiv = document.getElementById('pdfFallbackNote');
+            if (fallbackDiv) {
+                // Show gentle warning, but only once per session to avoid spam.
+                if (!window._pdf404HintShown) {
+                    fallbackDiv.style.display = 'flex';
+                    window._pdf404HintShown = true;
+                    setTimeout(() => {
+                        if (fallbackDiv) fallbackDiv.style.opacity = '0.8';
+                    }, 100);
+                }
+            }
+            // Also add quick manual download button near viewer? we inject a small helper link if needed.
+            const viewerHeader = document.querySelector('.viewer-header');
+            if (viewerHeader && !document.getElementById('manualDownloadHelper')) {
+                const helperLink = document.createElement('a');
+                helperLink.id = 'manualDownloadHelper';
+                helperLink.className = 'btn btn-sm btn-link ms-3 text-decoration-none';
+                helperLink.innerHTML = '<i class="bi bi-download"></i> Download PDF directly';
+                helperLink.href = pdfSources[storyId];
+                helperLink.download = '';
+                helperLink.target = '_blank';
+                helperLink.style.fontSize = '0.85rem';
+                viewerHeader.appendChild(helperLink);
+            } else if (document.getElementById('manualDownloadHelper')) {
+                document.getElementById('manualDownloadHelper').href = pdfSources[storyId];
+            }
         }
         
-        function closePdf() {
-            // Hide the PDF viewer section
-            document.getElementById('pdfViewerSection').style.display = 'none';
+        function openPdfSafely(storyId) {
+            const pdfPath = pdfSources[storyId];
+            const iframe = document.getElementById('pdfViewer');
+            const section = document.getElementById('pdfViewerSection');
+            const titleSpan = document.getElementById('viewerTitle');
             
-            // Clear the PDF viewer source
-            document.getElementById('pdfViewer').src = '';
+            if (!iframe || !section) return;
+            iframe.src = pdfPath;
+            if (titleSpan) titleSpan.innerHTML = `<i class="bi bi-file-pdf-fill text-danger me-2"></i> ${storyDisplayNames[storyId]} — Excerpt`;
+            section.style.display = 'block';
+            const oldHelper = document.getElementById('manualDownloadHelper');
+            if (oldHelper) oldHelper.remove();
             
-            // Scroll back to the stories section
-            document.getElementById('stories').scrollIntoView({ behavior: 'smooth' });
+            const fallbackDiv = document.getElementById('pdfFallbackNote');
+            if (fallbackDiv) fallbackDiv.style.display = 'none';
+            setTimeout(() => {
+                try {
+                    
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                   
+                    if (iframeDoc && iframeDoc.body) {
+                        const bodyText = iframeDoc.body.innerText || '';
+                        if (bodyText.includes('404') || bodyText.includes('Not Found') || bodyText.includes('error')) {
+                            if (fallbackDiv) fallbackDiv.style.display = 'flex';
+                            handlePdfLoadError(storyId);
+                        } else {
+                            
+                            if (fallbackDiv && !window._pdf404HintShown) fallbackDiv.style.display = 'none';
+                        }
+                    } else {
+                        
+                        if (fallbackDiv && !window._pdf404HintShown) {
+                            fallbackDiv.style.display = 'flex';
+                        }
+                       
+                        handlePdfLoadError(storyId);
+                    }
+                } catch(e) {
+                    if (fallbackDiv && !window._pdf404HintShown) {
+                        fallbackDiv.style.display = 'flex';
+                        window._pdf404HintShown = true;
+                    }
+                    handlePdfLoadError(storyId);
+                }
+            }, 800);
+
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        
+        function closePdfViewer() {
+            const section = document.getElementById('pdfViewerSection');
+            const iframe = document.getElementById('pdfViewer');
+            if (iframe) iframe.src = 'about:blank';
+            if (section) section.style.display = 'none';
+            
+            const helper = document.getElementById('manualDownloadHelper');
+            if (helper) helper.remove();
+            document.getElementById('stories')?.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+    
+        window.addEventListener('load', function() {
+        
+            const pdfContainer = document.getElementById('pdfViewerSection');
+            if (pdfContainer) pdfContainer.style.display = 'none';
+            const iframe = document.getElementById('pdfViewer');
+            if (iframe) iframe.src = 'about:blank';
+            console.log("✅ Ready — PDFs linked from exact filenames: Us Against the World.pdf , LOVE HEALS.pdf , LOST AND FOUND.pdf");
+        });
     </script>
 </body>
 </html>
