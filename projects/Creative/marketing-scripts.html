@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Marketing Scripts | Real Estate Content Library | Girisaa Priyadharsini</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Google Fonts: Elegant & Clean -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f4f7fc 0%, #eef2f5 100%);
+            color: #1e2a3e;
+            overflow-x: hidden;
+        }
+
+        /* modern glass navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            background: linear-gradient(130deg, #0f2b3d, #2c7da0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .nav-link {
+            color: #2c3e4e;
+            font-weight: 500;
+            margin: 0 0.2rem;
+            transition: 0.2s;
+        }
+        .nav-link:hover {
+            color: #2c7da0;
+            transform: translateY(-2px);
+        }
+
+        /* poster hero section (like book cover concept) */
+        .marketing-poster {
+            background: linear-gradient(120deg, #0b2b38 0%, #1c4e5e 100%);
+            padding: 55px 0;
+            border-radius: 0 0 48px 48px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.2);
+        }
+        .poster-img {
+            max-width: 100%;
+            border-radius: 28px;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+            border: 2px solid rgba(255,215,150,0.6);
+        }
+        .poster-img:hover {
+            transform: scale(1.02);
+        }
+        .poster-title {
+            font-size: 2.7rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(145deg, #FFE6B0, #FFBC7A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .poster-badge {
+            background: rgba(255,215,150,0.22);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 5px 18px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,215,150,0.5);
+            color: #fceabd;
+        }
+
+        /* main pdf card */
+        .pdf-glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(0px);
+            border-radius: 36px;
+            border: 1px solid rgba(44, 125, 160, 0.2);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        .pdf-header {
+            background: #ffffffdd;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid #e2edf2;
+        }
+        .pdf-viewer-frame {
+            width: 100%;
+            height: 75vh;
+            min-height: 550px;
+            border: none;
+            background: #fefcf7;
+        }
+        .btn-soft-primary {
+            background: #eef2fc;
+            color: #1e5a6f;
+            border-radius: 40px;
+            padding: 10px 26px;
+            font-weight: 500;
+            border: 1px solid #cbdde6;
+            transition: 0.2s;
+        }
+        .btn-soft-primary:hover {
+            background: #2c7da0;
+            border-color: #2c7da0;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .btn-outline-accent {
+            border: 1.5px solid #2c7da0;
+            background: transparent;
+            border-radius: 40px;
+            padding: 8px 24px;
+            color: #1e5a6f;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .btn-outline-accent:hover {
+            background: #2c7da0;
+            color: white;
+        }
+        .info-chip {
+            background: #f0f4f9;
+            border-radius: 80px;
+            padding: 4px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feature-list li {
+            margin-bottom: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .footer {
+            background: #0f2a33;
+            color: #cddfe6;
+            padding: 2rem 0;
+            margin-top: 70px;
+            border-top: 1px solid #2c5a6b;
+        }
+        @media (max-width: 768px) {
+            .poster-title { font-size: 1.9rem; }
+            .pdf-viewer-frame { height: 55vh; min-height: 400px; }
+            .marketing-poster { padding: 35px 0; }
+        }
+        hr.glow-light {
+            background: linear-gradient(90deg, transparent, #a0c4d6, transparent);
+            height: 1px;
+            border: 0;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation (return to main portfolio) -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="../../index.html">
+            ✨ Girisaa Priyadharsini
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#marketingNav">
+            <i class="bi bi-list fs-2" style="color:#1e2a3e;"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="marketingNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="../../index.html#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../index.html#creative">Writing</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../index.html#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pdf-viewer-section"><i class="bi bi-file-pdf me-1"></i>View Scripts</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- POSTER / HERO SECTION with poster image (visual like book cover concept) -->
+<section class="marketing-poster" data-aos="fade-down" data-aos-duration="800">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5 text-center" data-aos="zoom-in" data-aos-delay="100">
+                <!-- POSTER IMAGE: real estate marketing visual (representative poster) -->
+                <img src="Poster 2.png" 
+                     alt="Marketing Scripts Poster - Real Estate Content" 
+                     class="poster-img img-fluid"
+                     style="max-height: 380px; width: auto; object-fit: cover; background: #cfdfe8;">
+                <!-- fallback note: poster image used as visual identity for the pdf -->
+            </div>
+            <div class="col-lg-7">
+                <div class="poster-badge mb-3"><i class="bi bi-megaphone-fill me-1"></i> High-converting scripts</div>
+                <h1 class="poster-title mb-3">Real Estate <br>Marketing Scripts</h1>
+                <p class="lead text-white-50" style="color:#f1f7fa;">Proven scripts for calls, open houses & follow-ups — designed to build trust and close deals naturally.</p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="#pdf-viewer-section" class="btn btn-soft-primary"><i class="bi bi-eye me-2"></i>Preview PDF</a>
+                    <a href="../../index.html#contact" class="btn btn-outline-accent" style="background: rgba(0,0,0,0.2); border-color:#ffdea8; color:#ffefcf;">📩 Request Full Kit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN PDF VIEWER SECTION (ONLY this single PDF) -->
+<section id="pdf-viewer-section" class="container my-5" data-aos="fade-up" data-aos-duration="700">
+    <div class="pdf-glass-card">
+        <div class="pdf-header d-flex flex-wrap justify-content-between align-items-center">
+            <div>
+                <h3 class="mb-0 fw-bold" style="color:#164554;"><i class="bi bi-filetype-pdf text-danger me-2"></i> RealEstateScripts.pdf</h3>
+                <div class="mt-2 d-flex gap-2">
+                    <span class="info-chip"><i class="bi bi-pencil-square"></i> 2 marketing scripts + buyer guide</span>
+                    <span class="info-chip"><i class="bi bi-download"></i> Ready to view</span>
+                </div>
+            </div>
+            <div class="mt-2 mt-md-0">
+                <a href="RealEstateScripts.pdf" download class="btn btn-outline-accent"><i class="bi bi-download me-1"></i> Download PDF</a>
+                <a href="../../index.html#projects" class="btn btn-sm btn-soft-primary ms-2"><i class="bi bi-arrow-left-short"></i> Back to Portfolio</a>
+            </div>
+        </div>
+        <!-- Embedded PDF viewer: displays the exact RealEstateScripts.pdf file -->
+        <iframe class="pdf-viewer-frame" src="RealEstateScripts.pdf" title="Real Estate Marketing Scripts PDF Viewer"></iframe>
+        <div class="p-3 bg-light border-top" style="border-radius: 0 0 36px 36px; background:#f8fafd!important;">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <p class="mb-0 small text-secondary"><i class="bi bi-info-circle-fill me-1" style="color:#2c7da0;"></i> This document contains conversational scripts for real estate agents, including objection handlers and value-driven follow-ups. Perfect for open houses and lead nurturing.</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-2 mt-md-0">
+                    <span class="badge bg-white text-dark border px-3 py-2 rounded-pill shadow-sm"><i class="bi bi-bookmark-check-fill text-success me-1"></i> 2 scripts + checklist</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script insights / Snippet Preview (optional to match marketing feel, but no extra pdf) -->
+<section class="container my-5" data-aos="fade-up" data-aos-delay="150">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="bg-white p-4 rounded-4 shadow-sm h-100 border border-light">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <i class="bi bi-chat-right-quote fs-1" style="color:#2c7da0;"></i>
+                    <h4 class="mb-0 fw-semibold">Script Highlight #1</h4>
+                </div>
+                <p class="fst-italic text-secondary">“What if your morning coffee came with a view like this? Picture yourself coming home to a bright, airy house with great lighting, a quiet neighbourhood, and an amazing balcony...”</p>
+                <hr class="my-2">
+                <small class="text-muted"><i class="bi bi-tag"></i> Lifestyle-first hook · Dream home positioning</small>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="bg-white p-4 rounded-4 shadow-sm h-100 border border-light">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <i class="bi bi-lightbulb fs-1" style="color:#e67e22;"></i>
+                    <h4 class="mb-0 fw-semibold">Buyer's Checklist</h4>
+                </div>
+                <p class="text-secondary">6-point guide: RERA verification, carpet area clarity, payment schedule, maintenance fees, title verification, and free consultation offers.</p>
+                <div class="mt-2">
+                    <span class="badge bg-info bg-opacity-10 text-dark px-3 py-1 rounded-pill">📋 First-time buyer friendly</span>
+                    <span class="badge bg-success bg-opacity-10 text-dark px-3 py-1 rounded-pill ms-1">⚡ Limited units left</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA / Contact for personalized scripts (consistent with brand) -->
+<section class="container my-5 text-center" data-aos="zoom-in">
+    <div class="bg-gradient p-5 rounded-5" style="background: linear-gradient(115deg, #eef3f7, #ffffff); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        <h3 class="fw-bold">Need custom marketing scripts for your brand?</h3>
+        <p class="lead fs-6 text-secondary">I write persuasive, high-empathy scripts for real estate, service businesses & digital campaigns.</p>
+        <a href="mailto:girisha2536@gmail.com?subject=Marketing%20Scripts%20Inquiry" class="btn btn-soft-primary btn-lg px-5 mt-2"><i class="bi bi-envelope-paper"></i> Hire Me for Scriptwriting</a>
+        <p class="mt-3 small text-muted">✨ Available for freelance — email or DM on LinkedIn</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-12">
+                <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> Marketing Scripts Library — created for real estate professionals & content creators</p>
+                <p class="small opacity-75 mb-0">© 2025 Girisaa Priyadharsini.M | Code. Create. Conjure. | Single PDF showcase: RealEstateScripts.pdf</p>
+                <div class="mt-2">
+                    <a href="../../index.html" class="text-white-50 text-decoration-none me-3"><i class="bi bi-house-door"></i> Main Portfolio</a>
+                    <a href="#pdf-viewer-section" class="text-white-50 text-decoration-none"><i class="bi bi-file-pdf"></i> View PDF Again</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- bootstrap JS + AOS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 700, once: true, offset: 30 });
+    // Smooth scroll for anchor links (preserve behaviour)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === "#" || href === "") return;
+            if (href.startsWith("#") && !href.includes("http")) {
+                const targetElem = document.querySelector(href);
+                if (targetElem) {
+                    e.preventDefault();
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+    // ensure any external poster image fallback or placeholder note (just for consistent UI)
+    console.log("Marketing Scripts page — single PDF viewer ready (RealEstateScripts.pdf)");
+</script>
+</body>
+</html>
